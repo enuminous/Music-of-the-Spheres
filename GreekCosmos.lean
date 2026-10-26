@@ -29,10 +29,10 @@ def Determined (v : Verdict) : Prop :=
   v = .pass ∨ v = .fail
 
 theorem unresolved_not_determined : ¬ Determined .unresolved := by
-  decide
+  simp [Determined]
 
 theorem not_applicable_not_determined : ¬ Determined .notApplicable := by
-  decide
+  simp [Determined]
 
 /-- Reject the common mistake of upgrading "not applicable" to "pass". -/
 theorem not_applicable_is_not_a_pass :
