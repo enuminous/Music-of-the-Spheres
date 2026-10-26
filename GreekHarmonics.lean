@@ -27,16 +27,19 @@ def lengthEight : PositiveLength := ⟨8, by decide⟩
 /-- Double proportion and its equal enlarged construction. -/
 theorem octave_pair :
     SameLengthRatio lengthTwo lengthOne lengthFour lengthTwo := by
+  change (2 : Nat) * 2 = 4 * 1
   decide
 
 /-- Sesquialter and its corresponding enlarged construction. -/
 theorem fifth_pair :
     SameLengthRatio lengthThree lengthTwo lengthSix lengthFour := by
+  change (3 : Nat) * 4 = 6 * 2
   decide
 
 /-- Sesquitertian and its corresponding enlarged construction. -/
 theorem fourth_pair :
     SameLengthRatio lengthFour lengthThree lengthEight lengthSix := by
+  change (4 : Nat) * 6 = 8 * 3
   decide
 
 theorem same_length_ratio_refl (a b : PositiveLength) :
@@ -48,6 +51,6 @@ theorem same_length_ratio_symm {a b c d : PositiveLength}
     SameLengthRatio c d a b := by
   exact h.symm
 
-/-- No theorem here establishes that the heavens sound or that music
-    imposes a force law on astronomical bodies. -/
+/- No theorem here establishes that the heavens sound or that music
+   imposes a force law on astronomical bodies. -/
 end MusicOfTheSpheres
