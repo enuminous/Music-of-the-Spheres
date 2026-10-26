@@ -7,6 +7,7 @@ on:
       - '*.lean'
       - 'lakefile.toml'
       - 'lean-toolchain'
+      - 'lake-manifest.json'
       - '.github/workflows/lean.yml'
   pull_request:
     paths:
