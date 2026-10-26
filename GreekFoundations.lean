@@ -38,7 +38,7 @@ inductive Comparison where
 /-- An abstract Euclid-V-style language of positive repetitions and comparison.
     Laws beyond the supplied data must be separately established. -/
 structure ProportionLanguage (α : Type) where
-  repeat : Multitude → α → α
+  multiple : Multitude → α → α
   compare : α → α → Comparison
 
 /-- An abstract equimultiple criterion patterned on Elements V.5.
@@ -46,8 +46,8 @@ structure ProportionLanguage (α : Type) where
 def InProportion {α : Type} (L : ProportionLanguage α)
     (a b c d : α) : Prop :=
   ∀ (m n : Multitude),
-    L.compare (L.repeat m a) (L.repeat n b) =
-    L.compare (L.repeat m c) (L.repeat n d)
+    L.compare (L.multiple m a) (L.multiple n b) =
+    L.compare (L.multiple m c) (L.multiple n d)
 
 theorem proportion_reflexive {α : Type} (L : ProportionLanguage α)
     (a b : α) : InProportion L a b a b := by
