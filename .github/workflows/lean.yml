@@ -1,0 +1,40 @@
+name: Lean 4 formal verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.lean'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - '.github/workflows/lean.yml'
+  pull_request:
+    paths:
+      - '*.lean'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - '.github/workflows/lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  formal:
+    name: Build and kernel-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          test: false
+          lint: false
+      - name: Verify Lean declarations
+        run: |
+          lake build
+          lake check
+      - name: Reject unproved placeholders
+        run: |
+          if grep -nE '(^|[[:space:]])(sorry|admit)[[:space:]]' -- *.lean; then
+            echo "Unproved placeholder found"; exit 1
+          fi
