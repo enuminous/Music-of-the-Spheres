@@ -42,8 +42,9 @@ All primary source and model files live at the root:
 | **GreekCosmos.lean** | Research-claim statuses and source provenance types |
 | **MusicOfTheSpheres.lean** | Root Lean import module |
 | **lakefile.toml**, **lean-toolchain** | Minimal pinned Lean build without Mathlib dependency |
-| **.github/workflows/lean.yml** | CI build and kernel check on pushes |
+| **.github/workflows/lean.yml** | CI Lean compilation and regular kernel checking on pushes |
 | **.github/workflows/pages.yml** | Static GitHub Pages deployment |
+| **verify_site.mjs** and **.github/workflows/site.yml** | Standalone JavaScript syntax and link validation |
 
 ### Build and verify
 
@@ -51,10 +52,11 @@ Use elan and Lake with the pinned toolchain, then:
 
 ```bash
 lake build
-lake check
+# Optional stronger export replay on Linux with a functioning Bubblewrap sandbox:
+# lake check
 ```
 
-The Lean formalization proves basic closure, reflexivity, symmetry and transitivity properties for **defined relations**, along with concrete harmonic-pair arithmetic checks. It does not formalize Euclid's entire *Elements* or the complete Greek mathematical corpus. There are **no `sorry`** placeholders in the supplied Lean files.
+The Lean formalization proves reflexivity, symmetry and transitivity properties for **defined proportionality relations**, plus concrete harmonic-pair arithmetic checks and audit-status facts. It does not formalize Euclid's entire *Elements* or the complete Greek mathematical corpus. There are **no `sorry`** placeholders in the supplied Lean files. The regular Lean compiler has checked these declarations in CI. An additional `lake check` export replay is optional and needs Bubblewrap with working user namespaces; the default GitHub runner blocks that sandbox, so it is not the CI gate. Do **not** disable the sandbox merely to manufacture a success status.
 
 ## Historical accuracy and coverage
 
