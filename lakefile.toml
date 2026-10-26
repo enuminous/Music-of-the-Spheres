@@ -1,0 +1,7 @@
+name = "MusicOfTheSpheres"
+version = "0.1.0"
+defaultTargets = ["MusicOfTheSpheres"]
+
+[[lean_lib]]
+name = "MusicOfTheSpheres"
+srcDir = "."
