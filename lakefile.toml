@@ -1,6 +1,18 @@
 name = "MusicOfTheSpheres"
 version = "0.1.0"
-defaultTargets = ["MusicOfTheSpheres"]
+defaultTargets = ["MusicOfTheSpheres", "GreekFoundations", "GreekHarmonics", "GreekCosmos"]
+
+[[lean_lib]]
+name = "GreekFoundations"
+srcDir = "."
+
+[[lean_lib]]
+name = "GreekHarmonics"
+srcDir = "."
+
+[[lean_lib]]
+name = "GreekCosmos"
+srcDir = "."
 
 [[lean_lib]]
 name = "MusicOfTheSpheres"
