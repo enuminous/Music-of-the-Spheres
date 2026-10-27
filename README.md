@@ -1,5 +1,34 @@
 # Music of the Spheres · Ἁρμονία τοῦ Ὄντος
 
+<!-- ENUMINOUS-UNIFIED-NAV:START -->
+## Repository navigation
+
+**eNuminous network:** [All public repositories](https://github.com/enuminous/EFMW/blob/main/REPOSITORY_NAVIGATION.md) · [EFMW](https://github.com/enuminous/EFMW) · [102 equations](https://github.com/enuminous/Monolithic_102_EFMW) · [Frozen Lean](https://github.com/enuminous/Monolithic-102-Zoo-Lean4) · [Zoo](https://github.com/enuminous/Tortoise) · [Papers](https://github.com/enuminous/papers) · [Quantum geometry](https://github.com/enuminous/Base888-Quantum-Geometry)
+
+**This project:** [Repository home](https://github.com/enuminous/Music-of-the-Spheres) · [Subject index](https://github.com/enuminous/EFMW/blob/main/REPOSITORY_NAVIGATION.md#fundamental-physics-cosmology-and-quantum-geometry)
+
+<details open>
+<summary><strong>On this page</strong></summary>
+
+- [Start](#start)
+- [The central distinction](#the-central-distinction)
+- [Repository — flat stack](#repository--flat-stack)
+  - [Build and verify](#build-and-verify)
+- [Historical accuracy and coverage](#historical-accuracy-and-coverage)
+- [EFMW role, bounded](#efmw-role-bounded)
+- [Primary references and reading](#primary-references-and-reading)
+- [Publishing the site](#publishing-the-site)
+  - [Attribution and limitations](#attribution-and-limitations)
+
+
+</details>
+
+**Related repositories:** [Cosmology](https://github.com/enuminous/Cosmology) · [EFMW-Lagrangian](https://github.com/enuminous/EFMW-Lagrangian) · [Oroboros](https://github.com/enuminous/Oroboros) · [EFMW](https://github.com/enuminous/EFMW) · [Universe5](https://github.com/enuminous/Universe5) · [EFMW-Neutron-Star-Glitch-Resonance](https://github.com/enuminous/EFMW-Neutron-Star-Glitch-Resonance) · [Cat-Physics](https://github.com/enuminous/Cat-Physics) · [papers](https://github.com/enuminous/papers)
+
+> **Evidence boundary:** A link between projects is navigation, not an assertion of proven equivalence, experimental validation, or shared authorship. See each repository’s own status and review notes.
+<!-- ENUMINOUS-UNIFIED-NAV:END -->
+
+
 **A bilingual, offline-first Greek-native worldview laboratory organized and audited through EFMW.**
 
 **Website (once GitHub Pages is enabled):** https://enuminous.github.io/Music-of-the-Spheres/  
