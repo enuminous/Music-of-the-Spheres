@@ -8,6 +8,7 @@ on:
       - '*.md'
       - '*.lean'
       - 'lean-toolchain'
+      - 'verify_site.mjs'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -28,12 +29,32 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload static files
-        uses: actions/upload-pages-artifact@v3
+      - name: Validate standalone application
+        run: node verify_site.mjs
+      - name: Assemble the public offline site
+        run: |
+          mkdir -p site
+          cp index.html README.md README.el.md HARMONIC_COSMOS.md HISTORICAL_ATLAS.md EFMW_PROTOCOL.md *.lean site/
+          touch site/.nojekyll
+      - name: Save downloadable standalone site
+        uses: actions/upload-artifact@v4
         with:
-          path: .
+          name: music-of-the-spheres-offline
+          path: site/
+          include-hidden-files: true
+      - name: Configure GitHub Pages
+        id: configure
+        uses: actions/configure-pages@v5
+      - name: Explain one-time Pages activation
+        if: ${{ failure() && steps.configure.outcome == 'failure' }}
+        run: |
+          echo "### GitHub Pages needs one-time activation" >> "$GITHUB_STEP_SUMMARY"
+          echo "Go to **Settings → Pages → Build and deployment → Source → GitHub Actions**. Then re-run this workflow. The offline website ZIP above is available even before Pages is enabled." >> "$GITHUB_STEP_SUMMARY"
+          echo "::error::Enable Settings → Pages → Source: GitHub Actions; this cannot be provisioned by the default GITHUB_TOKEN."
+      - name: Upload static files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site/
       - name: Deploy
         id: deploy
         uses: actions/deploy-pages@v4

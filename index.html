@@ -143,7 +143,7 @@ const sources=[
 let lang="en",era="pythagorean",playing=true,angle=0,lastFrame=0,claims=[];
 const $=id=>document.getElementById(id);
 const T=k=>(dictionary[lang]||dictionary.en)[k]||k;
-const clean=s=>String(s||"").slice(0,1800);
+const clean=s=>String(s||"").slice(0,1500);
 function setText(el,s){el.textContent=s}
 function getLabelPair(pair){return pair[lang==="el"?1:0]}
 function store(){try{localStorage.setItem("spheres-workbench-v1",JSON.stringify({lang,era,claims,ordering:$("radius").value,tempo:$("tempo").value}));}catch(e){}}
@@ -186,7 +186,7 @@ $("captureModel").addEventListener("click",()=>{let idx=["eleatic","pythagorean"
 ["noun","relation","object","prov","verdict"].forEach(id=>$(id).addEventListener("change",renderPreview));$("addClaim").addEventListener("click",()=>addClaim(draft()));
 $("export").addEventListener("click",()=>{let data={format:"music-of-the-spheres-v1",researchStatus:"experimental",lang,era,claims:claims.map(c=>({...c})),exported:new Date().toISOString()};let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});let url=URL.createObjectURL(blob);let a=document.createElement("a");a.href=url;a.download="harmonia-research-record.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);});
 $("importBtn").addEventListener("click",()=>$("importFile").click());$("importFile").addEventListener("change",async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>400000)throw Error("size");safeImport(JSON.parse(await file.text()));alert(T("importDone"));}catch(err){alert(T("importError"));}e.target.value="";});
-$("clear").addEventListener("click",()=>{if(confirm(T("clearConfirm"))){claims=[];localStorage.removeItem("spheres-workbench-v1");renderClaims();}});
+$("clear").addEventListener("click",()=>{if(confirm(T("clearConfirm"))){claims=[];lang="en";era="pythagorean";playing=true;angle=0;lastFrame=0;$("radius").value="3";$("tempo").value="3";$("premise").value="";localize();chooseEra(era);syncLabels();draw();try{localStorage.removeItem("spheres-workbench-v1");}catch(e){}}});
 document.querySelectorAll(".navlink").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll(".navlink").forEach(x=>x.removeAttribute("aria-current"));a.setAttribute("aria-current","page")}));
 localize();chooseEra(era);requestAnimationFrame(animate);
 })();
