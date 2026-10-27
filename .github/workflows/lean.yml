@@ -14,6 +14,7 @@ on:
       - '*.lean'
       - 'lakefile.toml'
       - 'lean-toolchain'
+      - 'lake-manifest.json'
       - '.github/workflows/lean.yml'
   workflow_dispatch:
 
@@ -30,10 +31,15 @@ jobs:
         with:
           test: false
           lint: false
-      - name: Build and kernel-check Lean declarations
+      - name: Build every Lean library with the pinned toolchain
         run: lake build
-      - name: Reject unproved placeholders
+      - name: Compile every top-level Lean module independently
         run: |
-          if grep -nE '(^|[[:space:]])(sorry|admit)[[:space:]]' -- *.lean; then
-            echo "Unproved placeholder found"; exit 1
+          for module in GreekFoundations GreekHarmonics GreekCosmos MusicOfTheSpheres; do
+            lake env lean "${module}.lean"
+          done
+      - name: Reject unproved placeholders and explicit axioms
+        run: |
+          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)[[:space:]]' -- *.lean; then
+            echo "::error::Unproved placeholder or explicit axiom found in a root Lean source"; exit 1
           fi
